@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './style.css';
 import mapImage from './img/map.svg';
@@ -21,10 +21,7 @@ export const JourneyPicker = () => {
   const [toCity, setToCity] = useState('');
   const [date, setDate] = useState('');
 
-  const [cities, setCities] = useState([
-    { name: 'Praha', code: 'CZ-PRG' },
-    { name: 'Brno', code: 'CZ-BRQ' },
-  ]);
+  const [cities, setCities] = useState([]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -33,6 +30,12 @@ export const JourneyPicker = () => {
     console.log(toCity);
     console.log(date);
   };
+
+  useEffect(() => {
+    fetch('https://leviexpress-backend.herokuapp.com/api/cities')
+      .then((resp) => resp.json())
+      .then((json) => setCities(json.data));
+  }, []);
 
   return (
     <>
