@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { JourneyDetail } from './JourneyDetail';
 import { JourneyPicker } from './JourneyPicker';
 
 export const Home = () => {
   const [journey, setJourney] = useState(null);
-  console.log(journey);
 
   return (
     <>
@@ -14,9 +14,9 @@ export const Home = () => {
           //console.log('nazdar')
         }
       />
-      {journey !== null ? (
-        <div>Nalezeno spojení s id{journey.journeyId}</div>
-      ) : undefined}
+      {journey !== null ? <JourneyDetail journey={journey} /> : undefined}
     </>
   );
 };
+
+/*<div>Nalezeno spojení s id{//journey.journeyId}</div> ) : undefined}*/
