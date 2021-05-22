@@ -16,12 +16,24 @@ const CityOptions = ({ cities }) => {
   );
 };
 
+const DateOptions = ({ dates }) => {
+  return (
+    <>
+      <option value="">Vyberte</option>
+      {dates.map((date) => (
+        <option key={date}>{date}</option>
+      ))}
+    </>
+  );
+};
+
 export const JourneyPicker = () => {
   const [fromCity, setFromCity] = useState('');
   const [toCity, setToCity] = useState('');
   const [date, setDate] = useState('');
 
   const [cities, setCities] = useState([]);
+  const [dates, setDates] = useState([]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -35,6 +47,10 @@ export const JourneyPicker = () => {
     fetch('https://leviexpress-backend.herokuapp.com/api/cities')
       .then((resp) => resp.json())
       .then((json) => setCities(json.data));
+
+    fetch('https://leviexpress-backend.herokuapp.com/api/dates')
+      .then((resp) => resp.json())
+      .then((json) => setDates(json.data));
   }, []);
 
   return (
@@ -67,11 +83,7 @@ export const JourneyPicker = () => {
                 value={date}
                 onChange={(event) => setDate(event.target.value)}
               >
-                <option value="">Vyberte</option>
-                <option>20.05.2021</option>
-                <option>21.05.2021</option>
-                <option>22.05.2021</option>
-                <option>23.05.2021</option>
+                <DateOptions dates={dates} />
               </select>
             </label>
             <div className="journey-picker__controls">
