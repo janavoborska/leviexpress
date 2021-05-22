@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { JourneyDetail } from './JourneyDetail';
 import { JourneyPicker } from './JourneyPicker';
+import { SeatPicker } from './SeatPicker';
 
 export const Home = () => {
   const [journey, setJourney] = useState(null);
@@ -15,6 +16,7 @@ export const Home = () => {
         }
       />
       {journey !== null ? <JourneyDetail journey={journey} /> : undefined}
+      <SeatPicker />
     </>
   );
 };

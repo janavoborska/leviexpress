@@ -18,7 +18,6 @@ export const JourneyDetail = ({ journey }) => {
             time={stop.time}
           />
         ))}
-        ;
       </div>
     </div>
   );
